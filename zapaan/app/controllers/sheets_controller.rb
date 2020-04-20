@@ -3,7 +3,7 @@ class SheetsController < ApplicationController
 
   # GET /sheets
   def index
-    @sheets = Sheet.all
+    @sheets = Sheet.without_deleted
     json_response(@sheets)
   end
 
@@ -34,7 +34,7 @@ class SheetsController < ApplicationController
 
   def sheet_params
     # whitelist params
-    params.permit(:content, :time)
+    params.permit(:content, :count, :start_time, :current_time, :finish_time)
   end
 
   def set_sheet

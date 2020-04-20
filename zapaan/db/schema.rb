@@ -14,9 +14,14 @@ ActiveRecord::Schema.define(version: 2020_04_17_153551) do
 
   create_table "sheets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "content"
-    t.datetime "time"
+    t.integer "count"
+    t.datetime "start_time"
+    t.datetime "current_time"
+    t.datetime "finish_time"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_sheets_on_deleted_at"
   end
 
 end
