@@ -31,5 +31,10 @@ module Zapaan
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    config.generators do |g|
+      g.jbuilder true,
+      g.factory_bot true,
+      g.test_framework :rspec
+    end
   end
 end
