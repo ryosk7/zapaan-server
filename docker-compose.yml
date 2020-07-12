@@ -25,3 +25,16 @@ services:
       - 3000:3000
     tty: true
     stdin_open: true
+
+  nginx:
+    container_name: zapaan_nginx
+    build:
+      context: containers/nginx
+    volumes:
+      - ../volumes/app:/app                         # 静的ファイル
+      - ../volumes/web/log:/var/log/nginx/          # Nginxのログ
+      - ../volumes/ssl:/etc/nginx/cert/             # SSL証明書
+    ports:
+      - 80:80
+    depends_on:
+      - app

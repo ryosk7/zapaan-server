@@ -6,3 +6,5 @@ ADD zapaan/Gemfile /zapaan/Gemfile
 ADD zapaan/Gemfile.lock /zapaan/Gemfile.lock
 RUN bundle install
 ADD zapaan /web
+# puma.sockを配置するディレクトリを作成
+RUN mkdir -p tmp/sockets
