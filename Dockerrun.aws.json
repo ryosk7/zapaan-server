@@ -1,0 +1,36 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {   
+      "name": "nginx",
+      "image": "643580326746.dkr.ecr.ap-northeast-1.amazonaws.com/zapaan-web:latest",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [
+        {   
+          "hostPort": 80, 
+          "containerPort": 80
+        }   
+      ],  
+      "links": [
+        "app"
+      ]   
+    },  
+    {   
+      "name": "app",
+      "image": "643580326746.dkr.ecr.ap-northeast-1.amazonaws.com/zapaan-app:latest",
+      "essential": true,
+      "memory": 256,
+      "portMappings": [
+        {   
+          "containerPort": 3000
+        }   
+      ],  
+      "environment": [
+        {   
+          "name": "PROCESS", "value": "web"
+        }   
+      ]   
+    }
+  ]
+}
