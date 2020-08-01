@@ -13,13 +13,13 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password: root
-  host: db
+  username: <%= ENV.fetch("RDS_USERNAME") { "root" } %>
+  password: <%= ENV.fetch("RDS_PASSWORD") { "root" } %>
+  host: <%= ENV.fetch("RDS_HOSTNAME") { "db" } %>
 
 development:
   <<: *default
-  database: zapaan_development
+  database: <%= ENV['RDS_DB_NAME'] { "zapaan_development" } %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -51,7 +51,3 @@ test:
 production:
   <<: *default
   database: <%= ENV['RDS_DB_NAME'] %>
-  username: <%= ENV['RDS_USERNAME'] %>
-  password: <%= ENV['RDS_PASSWORD'] %>
-  host: <%= ENV['RDS_HOSTNAME'] %>
-  port: <%= ENV['RDS_PORT'] %>
