@@ -1,18 +1,6 @@
 version: "3"
 
 services:
-  # db:
-  #   container_name: zapaan_db
-  #   image: mysql
-  #   command: mysqld --default-authentication-plugin=mysql_native_password
-  #   environment:
-  #     MYSQL_USER: root
-  #     MYSQL_ROOT_PASSWORD: root
-  #   ports:
-  #     - '3316:3306'
-  #   volumes:
-  #     - ./db/mysql/volumes:/var/lib/mysql
-
   app:
     container_name: zapaan_app
     build: .
@@ -22,14 +10,13 @@ services:
       - public-data:/zapaan/public
       - tmp-data:/zapaan/tmp
       - log-data:/zapaan/log
-    depends_on:
-      - db
+
     ports:
       - 3000:3000
     tty: true
     stdin_open: true
     environment:
-      RAILS_ENV: development
+      RAILS_ENV: production
 
   web:
     container_name: zapaan_web
