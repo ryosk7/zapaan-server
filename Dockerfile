@@ -6,3 +6,11 @@ ADD zapaan/Gemfile /zapaan/Gemfile
 ADD zapaan/Gemfile.lock /zapaan/Gemfile.lock
 RUN bundle install
 ADD zapaan /web
+
+# 以下を追記
+COPY start.sh /usr/bin/
+RUN chmod +x /usr/bin/start.sh
+ENTRYPOINT ["start.sh"]
+EXPOSE 3000
+
+CMD ["bin/start"]
